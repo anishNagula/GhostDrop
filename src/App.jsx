@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { createClient } from "@supabase/supabase-js";
 import QRCode from "react-qr-code";
+import './app.css'
 
 // Supabase Configuration
 const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
