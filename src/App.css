@@ -1,8 +1,46 @@
+:root {
+  --button-bg-color: #ffffff;
+  --text-color: #111111;
+  --card-bg: #f9f9f9;
+  --border-color: #111111;
+  --shadow: rgba(0, 0, 0, 0.3);
+  --hover-bg: #e0e0e0;
+  --qrcard-bg-color: rgba(0, 0, 0, 0.2);
+}
+
+body.dark {
+  --button-bg-color: #111111;
+  --text-color: #ffffff;
+  --card-bg: #111111;
+  --border-color: #fbe331;
+  --shadow: rgba(255, 255, 255, 0.3);
+  --hover-bg: #2b2b2b;
+  --qrcard-bg-color: rgba(255, 255, 255, 0.2);
+}
+
 body {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  background-color: transparent;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  transition: background-color 0.3s, color 0.3s;
+
+  background: fixed
+      linear-gradient(#070707, #070707 6px, transparent 6px, transparent),
+    fixed linear-gradient(transparent, #fff 130%),
+    fixed repeating-linear-gradient(#efefef, #efefef 1px, transparent 1px, transparent 40px),
+    fixed repeating-linear-gradient(to right, #efefef, #efefef 1px, transparent 1px, transparent 40px),
+    white;
+}
+
+body.dark {
+  background: fixed
+      linear-gradient(#fbe331, #fbe331 6px, transparent 6px, transparent),
+    fixed linear-gradient(transparent, #070707 70%),
+    fixed repeating-linear-gradient(#2b2b2b, #2b2b2b 1px, transparent 1px, transparent 40px),
+    fixed repeating-linear-gradient(to right, #2b2b2b, #2b2b2b 1px, transparent 1px, transparent 40px),
+    #070707;
 }
 
 .app-container {
@@ -15,20 +53,8 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-
-  background-image: 
-    linear-gradient(rgba(0, 0, 0, 0.05) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(0, 0, 0, 0.05) 1px, transparent 1px);
-  background-size: 20px 20px;
-
-  /* Fade effect around the edges */
-  -webkit-mask-image: radial-gradient(circle, rgba(0, 0, 0, 1) 60%, rgba(0, 0, 0, 0) 100%);
-  mask-image: radial-gradient(circle, rgba(0, 0, 0, 1) 60%, rgba(0, 0, 0, 0) 80%);
-  mask-mode: alpha;
-  -webkit-mask-repeat: no-repeat;
-  -webkit-mask-position: center;
-  mask-repeat: no-repeat;
-  mask-position: center;
+  background-color: var(--bg-color);
+  color: var(--text-color);
 }
 
 .title-container {
@@ -40,13 +66,13 @@ body {
   letter-spacing: -4px;
   font-weight: bolder;
   margin: 0;
-  color: #111111;
+  color: var(--text-color);
   margin-bottom: 20px;
-  text-shadow: 4px 4px 10px rgba(0, 0, 0, 0.3);
+  text-shadow: 4px 4px 10px var(--shadow);
 }
 
 h3 {
-  color: #111111;
+  color: var(--text-color);
   font-weight: normal;
   font-size: 1.5rem;
 }
@@ -72,10 +98,10 @@ h3 {
 .file-input-label {
   margin-bottom: 5%;
   padding: 60px 20px;
-  border: 2px dashed #111111;
+  border: 2px dashed var(--border-color);
   border-radius: 10px;
-  background-color: #f9f9f9;
-  color: #333;
+  background-color: var(--card-bg);
+  color: var(--text-color);
   text-align: center;
   font-size: 16px;
   cursor: pointer;
@@ -85,61 +111,55 @@ h3 {
 }
 
 .file-input-label:hover {
-  background-color: #e0e0e0;
-  border-color: #555555;
+  background-color: var(--hover-bg);
 }
 
 .upload-button,
 .download-button,
 .delete-button {
   padding: 10px 20px;
-  border: none;
   border-radius: 5px;
-  background-color: #111111;
-  border: 1px solid #111111;
-  color: white;
   font-size: 1rem;
   font-weight: bold;
   cursor: pointer;
-  transition: background-color 0.3s;
+  transition: all 0.3s;
+  background-color: var(--text-color);
+  color: var(--button-bg-color);
+  border: 1px solid var(--text-color);
 }
 
+/* Hover styles */
+.upload-button:not(:disabled):hover,
+.download-button:not(:disabled):hover {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+}
+
+/* Disabled styles */
+.upload-button:disabled,
+.download-button:disabled,
+.delete-button:disabled {
+  background-color: var(--hover-bg);
+  color: var(--text-color);
+  border-color: var(--hover-bg);
+  cursor: not-allowed;
+}
+
+/* Download button spacing */
 .download-button {
   margin-right: 20px;
 }
 
-.upload-button:disabled,
-.download-button:disabled {
-  background-color: #cccccc;
-  cursor: not-allowed;
-}
-
-.upload-button:not(:disabled):hover {
-  background-color: transparent;
-  color: #111111;
-}
-
+/* Delete button base style */
 .delete-button {
-  padding: 10px 20px;
-  border: none;
-  border-radius: 5px;
   background-color: transparent;
-  border: 1px solid #111111;
-  color: #111111;
-  font-size: 1rem;
-  font-weight: bold;
-  cursor: pointer;
-  transition: background-color 0.3s;
+  color: var(--text-color);
+  border: 1px solid var(--text-color);
 }
 
-.delete-button:disabled {
-  background-color: #cccccc;
-  cursor: not-allowed;
-}
-
-.delete-button:not(:disabled):hover {
-  background-color: transparent;
-  color: #111111;
+/* Delete hover */
+.delete-button:hover {
+  background-color: var(--hover-bg);
 }
 
 .download-section {
@@ -154,7 +174,7 @@ h3 {
 .share-text {
   font-size: 14px;
   font-weight: bold;
-  color: #333;
+  color: var(--text-color);
 }
 
 .download-input {
@@ -165,19 +185,35 @@ h3 {
   margin-bottom: 5px;
   text-align: center;
   font-size: 14px;
+  background-color: var(--card-bg);
+  color: var(--text-color);
 }
 
 .qr-code {
   margin-top: 5%;
   padding: 15px;
-  background: white;
+  background: var(--bg-color);
   border-radius: 12px;
-  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.3);
-  border: 2px solid rgba(0, 0, 0, 0.1);
+  border: 2px solid var(--qrcard-bg-color);
   display: inline-block;
   transition: transform 0.2s ease-in-out;
 }
 
 .qr-code:hover {
   transform: scale(1.1);
+}
+
+/* Toggle Switch */
+.theme-toggle {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  padding: 8px 12px;
+  background: var(--card-bg);
+  border: 2px solid var(--border-color);
+  color: var(--text-color);
+  border-radius: 20px;
+  transition: background 0.3s, color 0.3s;
 }
