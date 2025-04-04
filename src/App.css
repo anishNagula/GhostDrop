@@ -32,32 +32,32 @@ body {
 }
 
 .title-container {
-  line-height: 4rem; /* Reduced line height */
+  line-height: 4rem;
 }
 
 .title {
-  font-size: 9rem; /* Reduced font size */
+  font-size: 9rem;
   letter-spacing: -4px;
   font-weight: bolder;
   margin: 0;
   color: #111111;
-  margin-bottom: 20px; /* Reduced margin */
+  margin-bottom: 20px;
   text-shadow: 4px 4px 10px rgba(0, 0, 0, 0.3);
 }
 
 h3 {
   color: #111111;
   font-weight: normal;
-  font-size: 1.5rem; /* Reduced font size */
+  font-size: 1.5rem;
 }
 
 .file-upload-container {
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 35%; /* Increased width for better use of space */
-  margin: 0 auto; /* Center the container */
-  margin-top: 4%; /* Reduced margin */
+  width: 35%;
+  margin: 0 auto;
+  margin-top: 4%;
   transition: transform 0.2s ease-in-out;
 }
 
@@ -66,22 +66,22 @@ h3 {
 }
 
 .file-input {
-  display: none; /* Hide the default file input */
+  display: none;
 }
 
 .file-input-label {
-  margin-bottom: 5%; /* Reduced margin */
-  padding: 60px 20px; /* Adjusted padding */
+  margin-bottom: 5%;
+  padding: 60px 20px;
   border: 2px dashed #111111;
   border-radius: 10px;
   background-color: #f9f9f9;
   color: #333;
   text-align: center;
-  font-size: 16px; /* Reduced font size */
+  font-size: 16px;
   cursor: pointer;
   transition: background-color 0.3s, border-color 0.3s;
-  width: 100%; /* Full width */
-  box-sizing: border-box; /* Include padding and border */
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .file-input-label:hover {
@@ -92,13 +92,13 @@ h3 {
 .upload-button,
 .download-button,
 .delete-button {
-  padding: 10px 20px; /* Adjusted padding */
+  padding: 10px 20px;
   border: none;
   border-radius: 5px;
   background-color: #111111;
   border: 1px solid #111111;
   color: white;
-  font-size: 1rem; /* Reduced font size */
+  font-size: 1rem;
   font-weight: bold;
   cursor: pointer;
   transition: background-color 0.3s;
@@ -120,13 +120,13 @@ h3 {
 }
 
 .delete-button {
-  padding: 10px 20px; /* Adjusted padding */
+  padding: 10px 20px;
   border: none;
   border-radius: 5px;
   background-color: transparent;
   border: 1px solid #111111;
   color: #111111;
-  font-size: 1rem; /* Reduced font size */
+  font-size: 1rem;
   font-weight: bold;
   cursor: pointer;
   transition: background-color 0.3s;
@@ -143,37 +143,37 @@ h3 {
 }
 
 .download-section {
-  margin-top: 10px; /* Reduced margin */
+  margin-top: 10px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 10px; /* Reduced gap */
+  gap: 10px;
   width: 100%;
 }
 
 .share-text {
-  font-size: 14px; /* Reduced font size */
+  font-size: 14px;
   font-weight: bold;
   color: #333;
 }
 
 .download-input {
   border: 1px solid #ccc;
-  padding: 8px; /* Adjusted padding */
+  padding: 8px;
   border-radius: 4px;
   width: 40%;
-  margin-bottom: 5px; /* Reduced margin */
+  margin-bottom: 5px;
   text-align: center;
-  font-size: 14px; /* Reduced font size */
+  font-size: 14px;
 }
 
 .qr-code {
-  margin-top: 5%; /* Reduced margin */
+  margin-top: 5%;
   padding: 15px;
   background: white;
-  border-radius: 12px; /* More rounded for a sticker look */
-  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.3); /* More depth */
-  border: 2px solid rgba(0, 0, 0, 0.1); /* Light border for definition */
+  border-radius: 12px;
+  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.3);
+  border: 2px solid rgba(0, 0, 0, 0.1);
   display: inline-block;
   transition: transform 0.2s ease-in-out;
 }

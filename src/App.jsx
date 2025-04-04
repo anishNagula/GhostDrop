@@ -3,7 +3,7 @@ import { createClient } from "@supabase/supabase-js";
 import QRCode from "react-qr-code";
 import './App.css';
 
-// Supabase Configuration
+// supabase configuration
 const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
 const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY;
 const supabase = createClient(supabaseUrl, supabaseAnonKey);
@@ -68,7 +68,7 @@ export default function App() {
   const handleDownload = (url) => {
     const link = document.createElement("a");
     link.href = url;
-    link.download = ""; // Browser will infer filename
+    link.download = "";
     link.target = "_blank";
     document.body.appendChild(link);
     link.click();
