@@ -217,3 +217,73 @@ h3 {
   border-radius: 20px;
   transition: background 0.3s, color 0.3s;
 }
+
+/* Media Queries for Responsiveness */
+@media (max-width: 1200px) {
+  .title {
+    font-size: 7rem;
+  }
+
+  .file-upload-container {
+    width: 50%;
+  }
+}
+
+@media (max-width: 900px) {
+  .title {
+    font-size: 5rem;
+  }
+
+  .file-upload-container {
+    width: 70%;
+  }
+
+  .download-input {
+    width: 80%;
+  }
+}
+
+@media (max-width: 600px) {
+  .title {
+    font-size: 4rem;
+  }
+
+  .file-upload-container {
+    width: 90%;
+  }
+
+  .download-input {
+    width: 90%;
+  }
+
+  .share-text {
+    font-size: 12px;
+  }
+
+  .upload-button,
+  .download-button,
+  .delete-button {
+    font-size: 0.9rem;
+    padding: 8px 16px;
+  }
+}
+
+@media (max-width: 400px) {
+  .title {
+    font-size: 3rem;
+  }
+
+  .file-input-label {
+    padding: 40px 10px;
+    font-size: 14px;
+  }
+
+  .download-button {
+    margin-right: 10px;
+  }
+
+  .theme-toggle {
+    font-size: 0.8rem;
+    padding: 6px 10px;
+  }
+}
