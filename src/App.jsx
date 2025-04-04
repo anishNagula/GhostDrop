@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { createClient } from "@supabase/supabase-js";
 import QRCode from "react-qr-code";
-import './App.css'
+import './App.css';
 
 // Supabase Configuration
 const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
@@ -13,13 +13,12 @@ export default function App() {
   const [filePath, setFilePath] = useState("");
   const [downloadUrl, setDownloadUrl] = useState("");
   const [loading, setLoading] = useState(false);
+  const [uploaded, setUploaded] = useState(false);
 
-  // Handle file selection
   const handleFileChange = (e) => {
     setFile(e.target.files[0]);
   };
 
-  // Upload file to Supabase Storage
   const uploadFile = async () => {
     if (!file) return alert("Please select a file!");
 
@@ -40,17 +39,16 @@ export default function App() {
     } else {
       setFilePath(data.path);
       generateDownloadUrl(data.path);
+      setUploaded(true);
     }
     setLoading(false);
   };
 
-  // Generate public download link
   const generateDownloadUrl = async (path) => {
     const { data } = supabase.storage.from("file-share").getPublicUrl(path);
     setDownloadUrl(data.publicUrl);
   };
 
-  // Delete File Manually
   const handleDelete = async () => {
     if (!filePath) return;
 
@@ -62,45 +60,68 @@ export default function App() {
       console.log("File deleted successfully");
       setDownloadUrl("");
       setFilePath("");
+      setUploaded(false);
       alert("File deleted successfully!");
     }
   };
 
+  const handleDownload = (url) => {
+    const link = document.createElement("a");
+    link.href = url;
+    link.download = ""; // Browser will infer filename
+    link.target = "_blank";
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
+
   return (
     <div className="app-container">
-      <div className="card">
+      <div className="title-container">
         <h1 className="title">GhostDrop</h1>
+        <h3>Drop Your Files - (it's safe 🤫)</h3>
+      </div>
 
-        {/* File Upload */}
-        <input type="file" onChange={handleFileChange} className="file-input" />
-        <button
-          onClick={uploadFile}
-          className="upload-button"
-          disabled={loading}
-        >
-          {loading ? "Uploading..." : "Upload File"}
-        </button>
+      {!uploaded && (
+        <div className="file-upload-container">
+          <input
+            type="file"
+            onChange={handleFileChange}
+            className="file-input"
+            id="file-upload"
+          />
+          <label htmlFor="file-upload" className="file-input-label">
+            {file ? file.name : "Drag & drop your files here or click to upload"}
+          </label>
+          <button
+            onClick={uploadFile}
+            className="upload-button"
+            disabled={loading}
+          >
+            {loading ? "Uploading..." : "Upload File"}
+          </button>
+        </div>
+      )}
 
-        {/* Download Link */}
-        {downloadUrl && (
-          <div className="download-section">
-            <p className="share-text">Share this link:</p>
-            <input
-              type="text"
-              value={downloadUrl}
-              readOnly
-              className="download-input"
-            />
-            
-            {/* Download Button */}
-            <a
-              href={downloadUrl}
-              target="_blank"
-              rel="noopener noreferrer"
+      {uploaded && downloadUrl && (
+        <div className="download-section">
+          <p className="share-text">Share this link:</p>
+
+          <input
+            type="text"
+            value={downloadUrl}
+            readOnly
+            className="download-input"
+          />
+
+          <div className="button-group">
+            {/* Consistent-looking download button */}
+            <button
+              onClick={() => handleDownload(downloadUrl)}
               className="download-button"
             >
               Download
-            </a>
+            </button>
 
             {/* Delete Button */}
             <button
@@ -109,14 +130,13 @@ export default function App() {
             >
               Delete File
             </button>
-
-            {/* QR Code */}
-            <div className="qr-code">
-              <QRCode value={downloadUrl} />
-            </div>
           </div>
-        )}
-      </div>
+
+          <div className="qr-code">
+            <QRCode value={downloadUrl} />
+          </div>
+        </div>
+      )}
     </div>
   );
 }

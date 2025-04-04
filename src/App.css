@@ -1,93 +1,183 @@
 body {
   margin: 0;
-  font-family: Arial, sans-serif;
-  background-color: #111111;
+  padding: 0;
+  box-sizing: border-box;
+  background-color: transparent;
 }
 
 .app-container {
+  min-height: 100vh;
+  max-height: 100vh;
+  overflow: hidden;
+  min-width: 100vw;
+  text-align: center;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
-  min-height: 100vh;
-  padding: 20px;
+
+  background-image: 
+    linear-gradient(rgba(0, 0, 0, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 0, 0, 0.05) 1px, transparent 1px);
+  background-size: 20px 20px;
+
+  /* Fade effect around the edges */
+  -webkit-mask-image: radial-gradient(circle, rgba(0, 0, 0, 1) 60%, rgba(0, 0, 0, 0) 100%);
+  mask-image: radial-gradient(circle, rgba(0, 0, 0, 1) 60%, rgba(0, 0, 0, 0) 80%);
+  mask-mode: alpha;
+  -webkit-mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  mask-repeat: no-repeat;
+  mask-position: center;
 }
 
-.card {
-  background-color: #222222;
-  padding: 4rem;
-  border-radius: 8px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  text-align: center;
-  width: 100%;
-  max-width: 600px;
+.title-container {
+  line-height: 4rem; /* Reduced line height */
 }
 
 .title {
-  font-size: 4rem;
-  font-weight: bold;
-  margin-bottom: 20px;
-  margin-top: 0;
+  font-size: 9rem; /* Reduced font size */
+  letter-spacing: -4px;
+  font-weight: bolder;
+  margin: 0;
+  color: #111111;
+  margin-bottom: 20px; /* Reduced margin */
+  text-shadow: 4px 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+h3 {
+  color: #111111;
+  font-weight: normal;
+  font-size: 1.5rem; /* Reduced font size */
+}
+
+.file-upload-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 35%; /* Increased width for better use of space */
+  margin: 0 auto; /* Center the container */
+  margin-top: 4%; /* Reduced margin */
+  transition: transform 0.2s ease-in-out;
+}
+
+.file-upload-container:hover {
+  transform: scale(1.1);
 }
 
 .file-input {
-  margin-bottom: 15px;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  width: 70%;
+  display: none; /* Hide the default file input */
 }
 
-.download-button {
-  width: 414px !important;
-  height: 15px;
-  text-decoration: none;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+.file-input-label {
+  margin-bottom: 5%; /* Reduced margin */
+  padding: 60px 20px; /* Adjusted padding */
+  border: 2px dashed #111111;
+  border-radius: 10px;
+  background-color: #f9f9f9;
+  color: #333;
+  text-align: center;
+  font-size: 16px; /* Reduced font size */
+  cursor: pointer;
+  transition: background-color 0.3s, border-color 0.3s;
+  width: 100%; /* Full width */
+  box-sizing: border-box; /* Include padding and border */
+}
+
+.file-input-label:hover {
+  background-color: #e0e0e0;
+  border-color: #555555;
 }
 
 .upload-button,
 .download-button,
 .delete-button {
-  background-color: #007bff;
-  color: white;
-  padding: 10px 15px;
+  padding: 10px 20px; /* Adjusted padding */
   border: none;
-  border-radius: 4px;
-  cursor: pointer;
+  border-radius: 5px;
+  background-color: #111111;
+  border: 1px solid #111111;
+  color: white;
+  font-size: 1rem; /* Reduced font size */
   font-weight: bold;
-  font-size: 20px;
-  width: 74%;
+  cursor: pointer;
   transition: background-color 0.3s;
 }
 
-.upload-button:hover,
-.download-button:hover,
-.delete-button:hover {
-  background-color: #0056b3;
+.download-button {
+  margin-right: 20px;
+}
+
+.upload-button:disabled,
+.download-button:disabled {
+  background-color: #cccccc;
+  cursor: not-allowed;
+}
+
+.upload-button:not(:disabled):hover {
+  background-color: transparent;
+  color: #111111;
+}
+
+.delete-button {
+  padding: 10px 20px; /* Adjusted padding */
+  border: none;
+  border-radius: 5px;
+  background-color: transparent;
+  border: 1px solid #111111;
+  color: #111111;
+  font-size: 1rem; /* Reduced font size */
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.delete-button:disabled {
+  background-color: #cccccc;
+  cursor: not-allowed;
+}
+
+.delete-button:not(:disabled):hover {
+  background-color: transparent;
+  color: #111111;
 }
 
 .download-section {
-  margin-top: 20px;
+  margin-top: 10px; /* Reduced margin */
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 20px;
+  gap: 10px; /* Reduced gap */
+  width: 100%;
 }
 
 .share-text {
-  font-size: 14px;
-  margin-bottom: 5px;
+  font-size: 14px; /* Reduced font size */
+  font-weight: bold;
+  color: #333;
 }
 
 .download-input {
   border: 1px solid #ccc;
-  padding: 10px;
+  padding: 8px; /* Adjusted padding */
   border-radius: 4px;
-  width: 75%;
-  margin-bottom: 10px;
+  width: 40%;
+  margin-bottom: 5px; /* Reduced margin */
+  text-align: center;
+  font-size: 14px; /* Reduced font size */
 }
 
 .qr-code {
-  margin-top: 20px;
+  margin-top: 5%; /* Reduced margin */
+  padding: 15px;
+  background: white;
+  border-radius: 12px; /* More rounded for a sticker look */
+  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.3); /* More depth */
+  border: 2px solid rgba(0, 0, 0, 0.1); /* Light border for definition */
+  display: inline-block;
+  transition: transform 0.2s ease-in-out;
+}
+
+.qr-code:hover {
+  transform: scale(1.1);
 }
